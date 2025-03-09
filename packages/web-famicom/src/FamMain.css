@@ -1,0 +1,236 @@
+
+.crt-area {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .crt-container {
+    position: relative;
+    background: radial-gradient(circle, #222 30%, #111 100%);
+    border-radius: 40px;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1),
+      0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 10px solid #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    /* 余白を追加 */
+    width: fit-content;
+    /* コンテンツサイズに応じる */
+    height: fit-content;
+    /* コンテンツサイズに応じる */
+  }
+  
+  .crt-screen {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(90, 95, 100, 1) 10%, rgba(50, 55, 60, 1) 100%);
+    border-radius: 20px;
+    box-shadow: inset 0 0 15px rgba(0, 255, 0, 0.2);
+    overflow: hidden;
+  }
+  
+  canvas {
+    display: block;
+    image-rendering: pixelated;
+  }
+  
+  .crt-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0) 95%,
+        rgba(0, 0, 0, 0.2) 96%);
+    pointer-events: none;
+    opacity: 0.3;
+  }
+  
+  /*ファミコン本体*/
+  .famicom {
+    position: relative;
+    width: 320px;
+    height: 200px;
+    background: linear-gradient(to bottom, #f8f2dc, #e0d0b0);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    border: 3px solid #a93226;
+    transform: perspective(500px) rotateX(25deg);
+  }
+  
+  .cartridge-slot {
+    width: 80%;
+    height: 30px;
+    background: #a93226;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .eject-slider {
+    width: 60%;
+    height: 20px;
+    background: #a93226;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: auto;
+    padding-bottom: 10px;
+  }
+  
+  .power-button,
+  .reset-button {
+    width: 60px;
+    height: 30px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 3px 0 darkred;
+  }
+  
+  .power-button {
+    background: red;
+  }
+  
+  .reset-button {
+    background: darkred;
+  }
+  
+  .power-button:active,
+  .reset-button:active {
+    box-shadow: none;
+    transform: translateY(3px);
+  }
+  
+  .cartridge-slot input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* コントローラー */
+  .controller {
+    width: 180px;
+    height: 60px;
+    background: linear-gradient(to right, #c04040, #a02020);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .dpad {
+    width: 50px;
+    height: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0px;
+    /*  background: #222;*/
+    position: absolute;
+    left: 10px;
+    top: 15px;
+  }
+  
+  .dpad div {
+    /*  background: #333;*/
+    width: 100%;
+    height: 100%;
+  }
+  
+  .dpad div.up {
+    background: #333;
+  }
+  
+  .dpad div.right {
+    background: #333;
+  }
+  
+  .dpad div.left {
+    background: #333;
+  }
+  
+  .dpad div.down {
+    background: #333;
+  }
+  
+  .dpad div.center {
+    background: #333;
+  }
+  
+  /*.dpad .center { background: #222; }*/
+  .start-select {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    top: 45px;
+  }
+  
+  .start-select div {
+    width: 25px;
+    height: 10px;
+    background: #222;
+    border-radius: 4px;
+  }
+  
+  .ct-buttons {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    right: 10px;
+    top: 40px;
+  }
+  
+  .ct-buttons div {
+    width: 20px;
+    height: 20px;
+    background: #111;
+    border-radius: 50%;
+    box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.2);
+  }
+  
+  /* コンテナ */
+  .fam-container {
+    display: flex;
+    justify-content: center;
+    /* 中央配置 */
+    align-items: center;
+    /* 縦位置を揃える */
+    gap: 20px;
+    /* 要素の間隔 */
+  }

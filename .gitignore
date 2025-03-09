@@ -128,3 +128,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# add
+build/
+packages/nes-emu/src/wasm/*.js
+tsconfig.tsbuildinfo

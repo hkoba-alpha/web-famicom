@@ -1,0 +1,25 @@
+{
+  "name": "nes-emu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rimraf dist tsconfig.tsbuildinfo && pnpm run wasm && tsc && pnpm run worker && pnpm run copy-js",
+    "copy-js": "copyfiles -u 1 src/wasm/*.js dist",
+    "wasm": "source ~/emsdk/emsdk_env.sh && cd wasm/build && make",
+    "worker": "tsc worker/apu-player.ts --outDir dist/assets --module ESNext --target ES2020 --declaration false",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "idb": "^7.1.1"
+  }
+}

@@ -1,0 +1,61 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+.controls {
+  margin-bottom: 20px;
+  padding-top: 2rem;
+}
+
+.controls button {
+  margin: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.checkbox-container {
+  margin-top: 10px;
+}
+
+.image-container img {
+  max-width: 100%;
+  transition: all 0.3s ease;
+}
+
+.explanation {
+  margin-top: 30px;
+  text-align: left;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.explanation-item {
+  margin-bottom: 20px;
+}
+
+.explanation-item h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.explanation-item p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.image-container {
+  margin-top: 20px;
+}
+
+.image-container img {
+  max-width: 100%;
+  transition: all 0.3s ease;
+}
