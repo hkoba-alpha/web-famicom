@@ -24,13 +24,15 @@
     /* コンテンツサイズに応じる */
   }
   
+  .crt-ntsc {
+    background: radial-gradient(circle, rgba(90, 95, 100, 1) 10%, rgba(50, 55, 60, 1) 100%);
+    border-radius: 20px;
+  }
   .crt-screen {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(circle, rgba(90, 95, 100, 1) 10%, rgba(50, 55, 60, 1) 100%);
-    border-radius: 20px;
     box-shadow: inset 0 0 15px rgba(0, 255, 0, 0.2);
     overflow: hidden;
   }
@@ -58,7 +60,7 @@
   .famicom {
     position: relative;
     width: 320px;
-    height: 200px;
+    height: 150px;
     background: linear-gradient(to bottom, #f8f2dc, #e0d0b0);
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -134,8 +136,6 @@
   
   .cartridge-slot input {
     position: absolute;
-    width: 100%;
-    height: 100%;
     opacity: 0;
     cursor: pointer;
   }

@@ -7,7 +7,7 @@ export class PPUCanvas implements IFamCanvas {
     private adjust?: () => void;
 
     // コンストラクタでCanvasのコンテキストを取得
-    public constructor(element: HTMLCanvasElement) {
+    public constructor(private element: HTMLCanvasElement) {
         this.clip = element.height * 256 / element.width < 230;
         this.context = element.getContext('2d')!;
         const height = this.clip ? 224 : 240;
@@ -23,6 +23,9 @@ export class PPUCanvas implements IFamCanvas {
                 );
             };
         }
+    }
+    powerOff(): void {
+        this.context.clearRect(0, 0, this.element.width, this.element.height);
     }
 
     render(image: Uint8ClampedArray): void {
@@ -56,6 +59,10 @@ export class PPUCanvasWebGL implements IFamCanvas {
         this.program = this.createShaderProgram();
         this.texture = this.createTexture();
         this.buffer = this.createBuffer();
+    }
+    powerOff(): void {
+        this.gl.clearColor(0, 0, 0, 0);
+        this.gl.clear(this.gl.COLOR_BUFFER_BIT);
     }
 
     private createShaderProgram(): WebGLProgram {

@@ -104,6 +104,7 @@ export class NesFile {
 export interface IFamCanvas {
     render(image: Uint8ClampedArray): void;
     isClip(): boolean;
+    powerOff(): void;
 }
 /**
  *  ボタン番号
@@ -388,6 +389,7 @@ export abstract class Mapper {
         this.cpu!.powerOff();
         this.ppu!.powerOff();
         this.apu!.powerOff();
+        this.canvas!.powerOff();
     }
     public readMem(addr: number): number {
         if (addr < 0x2000) {

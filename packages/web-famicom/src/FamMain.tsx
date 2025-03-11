@@ -13,19 +13,40 @@ function FamMain({ mode = "original", clip = true }: { mode: DisplayMode; clip?:
     useEffect(() => {
         if (mode === "original") {
             setCrtWidth(256);
-            setCrtHeight(clip ? 224: 240);
+            setCrtHeight(clip ? 224 : 240);
         } else {
             setCrtWidth(512);
-            setCrtHeight(clip ? 448: 480);
+            setCrtHeight(clip ? 448 : 480);
         }
     }, [mode, clip]);
-    const handleFileChange = async (event: any) => {
+    const requestBodyFocus = () => {
+        setTimeout(() => { document.body.focus(); });
+    }
+    const powerOff = () => {
         if (rom) {
             rom.powerOff();
             setRom(null);
         }
+        requestBodyFocus();
+    };
+    const reset = () => {
+        if (rom) {
+            rom.reset();
+        }
+        requestBodyFocus();
+    };
+    const handleFileClick = () => {
+        if (rom) {
+            rom.stopPlay();
+        }
+    };
+    const handleFileChange = async (event: any) => {
         const file = event.target.files[0]; // ファイルを取得
+        requestBodyFocus();
         if (file) {
+            if (rom) {
+                rom.powerOff();
+            }
             try {
                 // ファイルをバイナリとして読み込む
                 const arrayBuffer = await file.arrayBuffer();
@@ -35,7 +56,7 @@ function FamMain({ mode = "original", clip = true }: { mode: DisplayMode; clip?:
                 const nes = new NesFile(uint8Array);
                 console.log(nes);
                 const mapper = Mapper.getMapper(nes);
-                let canvas:IFamCanvas;
+                let canvas: IFamCanvas;
                 if (mode === "ntsc") {
                     canvas = new PPUCanvasWebGL(canvasRef.current!);
                 } else {
@@ -66,6 +87,8 @@ function FamMain({ mode = "original", clip = true }: { mode: DisplayMode; clip?:
             } catch (error) {
                 console.error("ファイル読み込みエラー:", error);
             }
+        } else if (rom) {
+            rom.startPlay();
         }
     };
 
@@ -73,7 +96,7 @@ function FamMain({ mode = "original", clip = true }: { mode: DisplayMode; clip?:
         <>
             <div className='crt-area'>
                 <div className="crt-container">
-                    <div className="crt-screen">
+                    <div className={"crt-screen" + (mode === 'ntsc' ? ' crt-ntsc': '')}>
                         <canvas ref={canvasRef} id="gameCanvas" width={crtWidth} height={crtHeight}></canvas>
                         <div className="crt-overlay"></div>
                     </div>
@@ -98,12 +121,11 @@ function FamMain({ mode = "original", clip = true }: { mode: DisplayMode; clip?:
                 </div>
 
                 <div className="famicom">
-                    <div className="cartridge-slot">Insert Cartridge<input type="file" onChange={handleFileChange} /></div>
+                    <div className="cartridge-slot">Insert Cartridge<input type="file" onClick={handleFileClick} onChange={handleFileChange} /></div>
 
-                    <div className="eject-slider">Eject</div>
                     <div className="buttons">
-                        <button className="power-button">Power</button>
-                        <button className="reset-button">Reset</button>
+                        <button onClick={powerOff} className="power-button">Power</button>
+                        <button onClick={reset} className="reset-button">Reset</button>
                     </div>
                 </div>
 
